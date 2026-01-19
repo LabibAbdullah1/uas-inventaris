@@ -1,0 +1,311 @@
+:root {
+    /* --- 1. PALET WARNA (Slate System - Inventory App) --- */
+    --bs-font-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
+    
+    /* Base Colors - Light Mode (Default) */
+    --color-bg-main: #f8fafc;      /* Background utama (Slate 50) */
+    --color-bg-surface: #ffffff;   /* Warna kartu/konten (White) */
+    --color-border: #e2e8f0;       /* Garis tepi halus (Slate 200) */
+    
+    /* Text Colors */
+    --bs-body-color: #334155;      /* Teks utama (Slate 700) */
+    --bs-secondary-color: #64748b; /* Teks sekunder (Slate 500) */
+    
+    /* Brand & Accents */
+    --primary-slate: #0f172a;      /* Warna tombol/brand (Slate 900) */
+    --primary-slate-hover: #1e293b;
+    --accent-blue: #3b82f6;        /* Biru terang untuk highlight */
+    
+    /* Variable Alias untuk View (Agar kompatibel dengan kode header/login) */
+    --primary: var(--primary-slate);
+
+    /* Bootstrap Override Var */
+    --bs-body-bg: var(--color-bg-main);
+}
+
+/* --- 2. DARK MODE PALETTE (Deep Navy) --- */
+[data-bs-theme="dark"] {
+    /* Base Colors - Dark Mode */
+    --color-bg-main: #020617;      /* Background sangat gelap (Slate 950) */
+    --color-bg-surface: #0f172a;   /* Kartu sedikit lebih terang (Slate 900) */
+    --color-border: #1e293b;       /* Garis tepi gelap (Slate 800) */
+    
+    /* Text Colors */
+    --bs-body-color: #e2e8f0;      /* Teks putih gading (Slate 200) */
+    --bs-secondary-color: #94a3b8; /* Teks sekunder (Slate 400) */
+    
+    /* Brand & Accents */
+    --primary-slate: #f8fafc;      /* Elemen brand jadi terang di mode gelap */
+    --primary-slate-hover: #e2e8f0;
+    
+    /* Di Dark Mode, Primary pakai Biru agar ikon putih tetap terbaca */
+    --primary: var(--accent-blue); 
+
+    /* Bootstrap Override Var */
+    --bs-body-bg: var(--color-bg-main);
+    --bs-border-color: var(--color-border);
+}
+
+/* --- 3. GLOBAL STYLES --- */
+body {
+    font-family: var(--bs-font-sans-serif);
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Navbar: Glassmorphism Effect */
+.navbar {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border-bottom: 1px solid var(--color-border);
+}
+
+[data-bs-theme="dark"] .navbar {
+    background-color: rgba(2, 6, 23, 0.85) !important;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--bs-body-color);
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-title {
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    background: -webkit-linear-gradient(315deg, var(--bs-body-color) 0%, var(--bs-secondary-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.text-gradient {
+    background: -webkit-linear-gradient(315deg, var(--bs-body-color) 0%, var(--bs-secondary-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+}
+/* Fix agar text gradient terlihat di dark mode */
+[data-bs-theme="dark"] .text-gradient {
+    background: -webkit-linear-gradient(315deg, #fff 0%, #94a3b8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+}
+
+/* --- CUSTOM BUTTONS (Fixed & Consistent) --- */
+
+/* 1. Tombol Utama (Solid) - Pill Shape */
+.btn-primary-custom {
+    background-color: var(--primary-slate);
+    border: 1px solid var(--primary-slate);
+    color: #ffffff; /* Default Text Putih */
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 50px; /* Pill Shape */
+    transition: all 0.2s ease;
+}
+
+/* Override Dark Mode: Pakai Biru agar tidak menyilaukan */
+[data-bs-theme="dark"] .btn-primary-custom {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #ffffff;
+}
+
+.btn-primary-custom:hover {
+    background-color: var(--primary-slate-hover);
+    border-color: var(--primary-slate-hover);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-bs-theme="dark"] .btn-primary-custom:hover {
+    background-color: #2563eb; /* Biru lebih gelap saat hover */
+    border-color: #2563eb;
+}
+
+/* 2. Tombol Sekunder (Outline) */
+.btn-outline-custom {
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--bs-body-color);
+    font-weight: 500;
+    padding: 10px 24px;
+    border-radius: 50px;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-custom:hover {
+    background-color: var(--primary-slate); 
+    border-color: var(--primary-slate);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="dark"] .btn-outline-custom:hover {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #ffffff !important;
+}
+
+/* 3. Tombol Submit Form (Kotak Standar) */
+.btn-submit {
+    background-color: var(--primary-slate);
+    border: 1px solid var(--primary-slate);
+    color: #ffffff;
+    padding: 10px 24px;
+    font-weight: 500;
+    border-radius: 8px; /* Rounded kotak untuk form */
+    transition: all 0.2s;
+}
+
+[data-bs-theme="dark"] .btn-submit {
+    color: var(--bs-body-bg);
+    background-color: #f8fafc;
+    border-color: #f8fafc;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-slate-hover);
+    border-color: var(--primary-slate-hover);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+[data-bs-theme="dark"] .btn-submit:hover {
+    background-color: #e2e8f0;
+    color: var(--bs-body-bg);
+}
+
+/* Card Styling */
+.card-custom, .card-form {
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+}
+
+/* Hover effect untuk card dashboard */
+.group-hover-effect:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Table Styling */
+.table {
+    --bs-table-color: var(--bs-body-color);
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--color-border);
+}
+
+.table th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: var(--bs-secondary-color);
+    background-color: var(--color-bg-main);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.5rem;
+}
+
+.table td {
+    padding: 1rem 1.5rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--bs-body-color);
+}
+
+.table tr:last-child td { border-bottom: none; }
+
+.font-nim {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+    letter-spacing: -0.5px;
+    color: var(--bs-body-color);
+}
+
+/* Form Inputs */
+.form-control, .form-select, .form-control-search {
+    background-color: var(--color-bg-main);
+    border: 1px solid var(--color-border);
+    color: var(--bs-body-color);
+    border-radius: 8px;
+}
+
+.form-control::placeholder {
+    color: var(--bs-secondary-color);
+    opacity: 0.6;
+}
+
+.form-control:focus, .form-select:focus, .form-control-search:focus {
+    background-color: var(--color-bg-surface);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    color: var(--bs-body-color);
+}
+
+/* Pagination */
+.pagination .page-link {
+    color: var(--bs-body-color);
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    margin: 0 2px;
+    font-size: 0.85rem;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-slate);
+    border-color: var(--primary-slate);
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .pagination .page-item.active .page-link { 
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #ffffff; 
+}
+
+/* Animation */
+.fade-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Utility */
+.filter-section { display: none; }
+.hover-underline:hover { text-decoration: underline !important; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section { padding: 40px 0; }
+    .hero-title { font-size: 2rem; }
+    .btn-primary-custom, .btn-outline-custom, .btn-submit {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+    .table th, .table td { padding: 0.75rem 0.5rem; font-size: 0.85rem; white-space: nowrap; }
+    .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .card-custom, .card-form { padding: 1rem !important; }
+}
