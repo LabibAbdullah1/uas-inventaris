@@ -1,5 +1,6 @@
 <?php
 require_once '../app/Models/Barang.php';
+require_once '../app/Libraries/PDF.php';
 
 class BarangController
 {
@@ -104,42 +105,49 @@ class BarangController
         $model = new Barang();
         $barang = $model->getAll();
 
-        require_once '../vendor/fpdf/fpdf.php';
-
-        $pdf = new FPDF('P', 'mm', 'A4');
+        $pdf = new PDF('P', 'mm', 'A4');
         $pdf->AddPage();
 
         // Kop Surat
         $pdf->SetFont('Arial', 'B', 16);
         $pdf->Cell(0, 10, 'LAPORAN INVENTARIS BARANG', 0, 1, 'C');
         $pdf->SetFont('Arial', '', 12);
-        $pdf->Cell(0, 5, 'Inventaris App', 0, 1, 'C');
-        $pdf->Ln(10);
+        $pdf->Cell(0, 6, 'Inventaris App', 0, 1, 'C');
+        $pdf->Ln(8);
 
         // Header Tabel
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetFillColor(230, 230, 230);
+
         $pdf->Cell(10, 10, 'No', 1, 0, 'C', true);
-        $pdf->Cell(30, 10, 'Nama Barang', 1, 0, 'L', true);
-        $pdf->Cell(40, 10, 'Kategori', 1, 0, 'L', true);
-        $pdf->Cell(20, 10, 'Jml', 1, 0, 'C', true);
-        $pdf->Cell(20, 10, 'Kondisi', 1, 0, 'C', true);
-        $pdf->Cell(60, 10, 'Keterangan', 1, 1, 'L', true);
+        $pdf->Cell(50, 10, 'Nama Barang', 1, 0, 'L', true);
+        $pdf->Cell(45, 10, 'Kategori', 1, 0, 'L', true);
+        $pdf->Cell(15, 10, 'Jml', 1, 0, 'C', true);
+        $pdf->Cell(27, 10, 'Kondisi', 1, 0, 'C', true);
+        $pdf->Cell(50, 10, 'Keterangan', 1, 1, 'L', true);
 
         // Isi Data
         $pdf->SetFont('Arial', '', 10);
         $no = 1;
+
         foreach ($barang as $row) {
-            $pdf->Cell(10, 10, $no++, 1, 0, 'C');
-            $pdf->Cell(30, 10, $row['nama_barang'], 1, 0);
-            $pdf->Cell(40, 10, $row['nama_kategori'], 1, 0);
-            $pdf->Cell(20, 10, $row['jumlah'], 1, 0, 'C');
-            $pdf->Cell(20, 10, $row['kondisi'], 1, 0, 'C');
-            $pdf->Cell(60, 10, $row['keterangan'], 1, 1);
+            $pdf->Row(
+                [
+                    $no++,
+                    $row['nama_barang'],
+                    $row['nama_kategori'],
+                    $row['jumlah'],
+                    $row['kondisi'],
+                    $row['keterangan']
+                ],
+                [10, 50, 45, 15, 27, 50],
+                ['C', 'L', 'L', 'C', 'C', 'L']
+            );
         }
 
-        $pdf->Output();
+        $pdf->Output('I', 'Laporan-Inventaris.pdf');
     }
+
 
     private function view($viewName, $data = [])
     {
