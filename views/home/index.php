@@ -3,7 +3,7 @@
 
         <div class="d-inline-block mb-3">
             <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill shadow-sm border border-primary border-opacity-10" style="letter-spacing: 0.5px;">
-                Sistem Informasi Inventaris V2.0
+                Sistem Informasi Inventaris V2.1
             </span>
         </div>
 
