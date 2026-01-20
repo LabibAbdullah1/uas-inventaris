@@ -9,8 +9,9 @@ if (session_status() === PHP_SESSION_NONE) {
 // Load Config & Controllers
 require_once '../app/Config/Database.php';
 require_once '../app/Controllers/HomeController.php';
-require_once '../app/Controllers/BarangController.php'; // Controller Barang
+require_once '../app/Controllers/BarangController.php';
 require_once '../app/Controllers/AuthController.php';
+require_once '../app/Controllers/AuditController.php';
 require_once '../app/Controllers/UserController.php';
 
 // Ambil parameter URL
@@ -35,7 +36,7 @@ switch ($page) {
     case 'auth':
         $controller = new AuthController();
         if ($act == 'login') {
-            $controller->login(); // Menangani POST login & Tampilan Form
+            $controller->login(); 
         } elseif ($act == 'logout') {
             $controller->logout();
         } else {
@@ -72,6 +73,31 @@ switch ($page) {
             $controller->index();
         }
         break;
+
+    // --- FITUR AUDIT / STOCK OPNAME ---
+    case 'audit':
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?page=auth&act=login');
+            exit;
+        }
+
+        $controller = new AuditController();
+
+        if ($act == 'create') $controller->create();
+        elseif ($act == 'store') $controller->store();
+        elseif ($act == 'check') {
+            $id = isset($_GET['id']) ? $_GET['id'] : 0;
+            $controller->check($id);
+        } elseif ($act == 'submit_check') $controller->submit_check();
+        elseif ($act == 'close') {
+            $id = isset($_GET['id']) ? $_GET['id'] : 0;
+            $controller->close($id);
+        }elseif ($act == 'delete') {
+            $id = isset($_GET['id']) ? $_GET['id'] : 0;
+            $controller->delete($id);
+        } else $controller->index();
+        break;
+
 
     // --- MANAJEMEN USER ---
     case 'user':

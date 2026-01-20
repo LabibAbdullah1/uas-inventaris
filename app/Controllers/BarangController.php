@@ -113,29 +113,29 @@ class BarangController
         $pdf->SetFont('Arial', 'B', 16);
         $pdf->Cell(0, 10, 'LAPORAN INVENTARIS BARANG', 0, 1, 'C');
         $pdf->SetFont('Arial', '', 12);
-        $pdf->Cell(0, 5, 'Universitas Lancang Kuning', 0, 1, 'C');
+        $pdf->Cell(0, 5, 'Inventaris App', 0, 1, 'C');
         $pdf->Ln(10);
 
         // Header Tabel
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetFillColor(230, 230, 230);
         $pdf->Cell(10, 10, 'No', 1, 0, 'C', true);
-        $pdf->Cell(60, 10, 'Nama Barang', 1, 0, 'L', true);
+        $pdf->Cell(30, 10, 'Nama Barang', 1, 0, 'L', true);
         $pdf->Cell(40, 10, 'Kategori', 1, 0, 'L', true);
         $pdf->Cell(20, 10, 'Jml', 1, 0, 'C', true);
-        $pdf->Cell(30, 10, 'Kondisi', 1, 0, 'C', true);
-        $pdf->Cell(30, 10, 'Keterangan', 1, 1, 'L', true);
+        $pdf->Cell(20, 10, 'Kondisi', 1, 0, 'C', true);
+        $pdf->Cell(60, 10, 'Keterangan', 1, 1, 'L', true);
 
         // Isi Data
         $pdf->SetFont('Arial', '', 10);
         $no = 1;
         foreach ($barang as $row) {
             $pdf->Cell(10, 10, $no++, 1, 0, 'C');
-            $pdf->Cell(60, 10, $row['nama_barang'], 1, 0);
+            $pdf->Cell(30, 10, $row['nama_barang'], 1, 0);
             $pdf->Cell(40, 10, $row['nama_kategori'], 1, 0);
             $pdf->Cell(20, 10, $row['jumlah'], 1, 0, 'C');
-            $pdf->Cell(30, 10, $row['kondisi'], 1, 0);
-            $pdf->Cell(30, 10, $row['keterangan'], 1, 1);
+            $pdf->Cell(20, 10, $row['kondisi'], 1, 0, 'C');
+            $pdf->Cell(60, 10, $row['keterangan'], 1, 1);
         }
 
         $pdf->Output();

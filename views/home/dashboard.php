@@ -43,25 +43,25 @@
             </div>
         <?php endif; ?>
 
-        <div class="col-md-6 col-lg-4">
-            <div class="card-custom p-4 h-100 d-flex flex-column justify-content-center gap-3">
-                <?php if ($_SESSION['role'] == 'admin'): ?>
+        <?php if ($_SESSION['role'] == 'admin'): ?>
+            <div class="col-md-6 col-lg-4">
+                <div class="card-custom p-4 h-100 d-flex flex-column justify-content-center gap-3">
                     <a href="index.php?page=barang&act=create" class="btn btn-primary-custom w-100 d-flex align-items-center justify-content-center gap-2">
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                         </svg>
                         Tambah Barang
                     </a>
-                <?php endif; ?>
-                <a href="index.php?page=barang&act=export" target="_blank"
-                    class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-2">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                    </svg>
-                    Export Laporan
-                </a>
+                    <a href="index.php?page=barang&act=export" target="_blank"
+                        class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-2">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                        Export Laporan
+                    </a>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
 
     <div class="card-custom overflow-hidden">
