@@ -41,8 +41,8 @@
                         <label class="form-label small fw-bold text-uppercase text-muted">Role</label>
                         <select name="role" class="form-select">
                             <?php $role = isset($user['role']) ? $user['role'] : ''; ?>
-                            <option value="user" <?= $role == 'user' ? 'selected' : '' ?>>User (Staff)</option>
-                            <option value="admin" <?= $role == 'admin' ? 'selected' : '' ?>>Admin (Full Akses)</option>
+                            <option value="user" <?= $role == 'user' ? 'selected' : '' ?>>User</option>
+                            <option value="admin" <?= $role == 'admin' ? 'selected' : '' ?>>Admin</option>
                         </select>
                     </div>
 
