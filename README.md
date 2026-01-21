@@ -40,7 +40,7 @@ Aplikasi ini dikembangkan untuk memenuhi tugas **UAS Pemrograman Web 1**.
     * Salin isi dari `.env.example` ke `.env` dan sesuaikan kredensial databasemu.
     ```ini
     DB_HOST=localhost
-    DB_NAME=uas_inventaris
+    DB_NAME=inventaris
     DB_USER=root
     DB_PASS=
     ```
