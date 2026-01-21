@@ -13,10 +13,10 @@ class Database
         $this->loadEnv();
 
         // Set properti dari data .env
-        $this->host = getenv('DB_HOST') ?: 'localhost';
-        $this->db_name = getenv('DB_NAME') ?: 'inventaris';
-        $this->username = getenv('DB_USER') ?: 'root';
-        $this->password = getenv('DB_PASS') ?: '';
+        $this->host = getenv('DB_HOST');
+        $this->db_name = getenv('DB_NAME');
+        $this->username = getenv('DB_USER');
+        $this->password = getenv('DB_PASS');
     }
 
     public function connect()

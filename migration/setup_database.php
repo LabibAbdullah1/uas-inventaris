@@ -10,7 +10,7 @@
 
 $host = 'localhost';
 $user = 'root';
-$pass = ''; // Sesuaikan password database lokal (XAMPP biasanya kosong)
+$pass = '121212'; // Sesuaikan password database lokal (XAMPP biasanya kosong)
 $db_name = 'inventaris';
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
